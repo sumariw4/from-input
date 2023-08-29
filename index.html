@@ -1551,7 +1551,25 @@
                                     if (name === '' || email === '' || data_one === '' || data_two === '' || data_three === '' || data_four === '' || data_five === '' || data_six === '' || data_seven === '' || data_eight === '' || data_nine === '' || data_ten === '' || data_eleven === '' || data_twelve === '' || data_thirteen === '' || data_fourteen === '') {
                                         swal('Please complete the form', '', 'error');
                                     } else {
-                                        let link = 'https:\/\/docs.google.com/forms/d/e/1FAIpQLSf6i-OpK_QFF24MAP-MPobC2_yEieCs9X3kZ2aQVmKfQ-3oDg/formResponse?usp=pp_url' + '&entry.1142152857=' + email + '&entry.1297098253=' + data_two + '&entry.1325162669=' + data_three + '&entry.745652231=' + data_four + '&entry.1756097018=' + data_five + '&entry.1291316593=' + data_six + '&entry.1203482116=' + data_seven + '&entry.626045774=' + data_eight + '&entry.49290675=' + data_nine + '&entry.2097706187=' + data_ten + '&entry.936095193=' + data_eleven + '&entry.1059935008=' + data_twelve + '&entry.1602882055=' + data_thirteen + '&entry.1248590208=' + data_fourteen + '&entry.797431002=' + data_fifteen + '&entry.1449005772=' + name + '&entry.1685270148=' + email + '&submit=Submit';
+                                        let link = 'https:\/\/docs.google.com/forms/d/e/1FAIpQLSedGkfoBU_3q5q4pkZXLq4_q-Cucqjt-zor4yMgfGKAFsJh-A/formResponse?usp=pp_url' + 
+                                        '&entry.1270961278=' + data_one + 
+                                        '&entry.1792517787=' + data_two + 
+                                        '&entry.1417269210=' + data_three + 
+                                        '&entry.374782766=' + data_four + 
+                                        '&entry.888136725=' + data_five + 
+                                        '&entry.1933643341=' + data_six + 
+                                        '&entry.835212317=' + data_seven + 
+                                        '&entry.2082345=' + data_eight + 
+                                        '&entry.1874398260=' + data_nine + 
+                                        '&entry.2145177338=' + data_ten + 
+                                        '&entry.1094246411=' + data_eleven + 
+                                        '&entry.600010926=' + data_twelve + 
+                                        '&entry.1012423439=' + data_thirteen + 
+                                        '&entry.1662416570=' + data_fourteen + 
+                                        '&entry.219274569=' + data_fifteen + 
+                                        '&entry.1779994598=' + name + 
+                                        '&entry.1357827156=' + email +
+                                        '&submit=Submit';
                                         $.ajax({
                                             url: link,
                                             type: 'GET',
