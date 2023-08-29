@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Form Input</title>
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.0/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css" rel="stylesheet">
+
+    <style>
+        [x-cloak] {
+            display: none;
+        }
+
+        [type="checkbox"] {
+            box-sizing: border-box;
+            padding: 0;
+        }
+
+        .form-checkbox,
+        .form-radio {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            -webkit-print-color-adjust: exact;
+            color-adjust: exact;
+            display: inline-block;
+            vertical-align: middle;
+            background-origin: border-box;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            flex-shrink: 0;
+            color: currentColor;
+            background-color: #fff;
+            border-color: #e2e8f0;
+            border-width: 1px;
+            height: 1.4em;
+            width: 1.4em;
+        }
+
+        .form-checkbox {
+            border-radius: 0.25rem;
+        }
+
+        .form-radio {
+            border-radius: 50%;
+        }
+
+        .form-checkbox:checked {
+            background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z'/%3e%3c/svg%3e");
+            border-color: transparent;
+            background-color: currentColor;
+            background-size: 100% 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .form-radio:checked {
+            background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='8' cy='8' r='3'/%3e%3c/svg%3e");
+            border-color: transparent;
+            background-color: currentColor;
+            background-size: 100% 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
+
+</head>
+
+<body class="antialiased sans-serif bg-gray-200">
+    <div x-data="{
+        step: 1,
+        maxStep: 16,
+        isLastStep() {
+            return this.step === this.maxStep;
+        },
+        next() {
+            if (this.step < this.maxStep) {
+                this.step++;
+            }
+        },
+        prev() {
+            if (this.step > 1) {
+                this.step--;
+            }
+        },
+        submit() {
+            alert('Form submitted!');
+        }}" x-cloak>
+        <div class="max-w-3xl mx-auto px-4 py-10">
+
+            <div x-show.transition="step === 'complete'">
+                <div class="bg-white rounded-lg p-10 flex items-center shadow justify-between">
+                    <div>
+                        <svg class="mb-4 h-20 w-20 text-green-500 mx-auto" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                clip-rule="evenodd" />
+                        </svg>
+
+                        <h2 class="text-2xl mb-4 text-gray-800 text-center font-bold">Registration Success</h2>
+
+                        <div class="text-gray-600 mb-8">
+                            Thank you. We have sent you an email to demo@demo.test. Please click the link in the
+                            message to activate your account.
+                        </div>
+
+                        <button @click="step = 1"
+                            class="w-40 block mx-auto focus:outline-none py-2 px-5 rounded-lg shadow-sm text-center text-gray-600 bg-white hover:bg-gray-100 font-medium border">Back
+                            to home</button>
+                    </div>
+                </div>
+            </div>
+
+            <div x-show.transition="step != 'complete'">
+                <div class="border-b-2 py-4">
+                    <div class="uppercase tracking-wide text-xs font-bold text-gray-500 mb-1 leading-tight"
+                        x-text="`Step: ${step} of 16`"></div>
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                        <div class="flex-1">
+                            <div x-show="step === 1">
+                                <div class="text-lg font-bold text-gray-700 leading-tight">
+                                    Personal Growth Self-Assessment
+                                </div>
+                            </div>
+                            <div x-show="step === 2">
+                                <div class="text-lg font-bold text-gray-700 leading-tight">
+                                    Personal Growth Self-Assessment
+                                </div>
+                            </div>
+                            <div x-show="step === 3">
+                                <div class="text-lg font-bold text-gray-700 leading-tight">
+                                    Personal Growth Self-Assessment
+                                </div>
+                            </div>
+                            <div x-show="step === 4">
+                                <div class="text-lg font-bold text-gray-700 leading-tight">
+                                    Personal Growth Self-Assessment
+                                </div>
+                            </div>
+                            <div x-show="step === 5">
+                                <div class="text-lg font-bold text-gray-700 leading-tight">
+                                    Personal Growth Self-Assessment
+                                </div>
+                            </div>
+                            <div x-show="step === 6">
+                                <div class="text-lg font-bold text-gray-700 leading-tight">
+                                    Personal Growth Self-Assessment
+                                </div>
+                            </div>
+                            <div x-show="step === 7">
+                                <div class="text-lg font-bold text-gray-700 leading-tight">
+                                    Personal Growth Self-Assessment
+                                </div>
+                            </div>
+                            <div x-show="step === 8">
+                                <div class="text-lg font-bold text-gray-700 leading-tight">
+                                    Personal Growth Self-Assessment
+                                </div>
+                            </div>
+                            <div x-show="step === 9">
+                                <div class="text-lg font-bold text-gray-700 leading-tight">
+                                    Personal Growth Self-Assessment
+                                </div>
+                            </div>
+                            <div x-show="step === 10">
+                                <div class="text-lg font-bold text-gray-700 leading-tight">
+                                    Personal Growth Self-Assessment
+                                </div>
+                            </div>
+                            <div x-show="step === 11">
+                                <div class="text-lg font-bold text-gray-700 leading-tight">
+                                    Personal Growth Self-Assessment
+                                </div>
+                            </div>
+                            <div x-show="step === 12">
+                                <div class="text-lg font-bold text-gray-700 leading-tight">
+                                    Personal Growth Self-Assessment
+                                </div>
+                            </div>
+                            <div x-show="step === 13">
+                                <div class="text-lg font-bold text-gray-700 leading-tight">
+                                    Personal Growth Self-Assessment
+                                </div>
+                            </div>
+                            <div x-show="step === 14">
+                                <div class="text-lg font-bold text-gray-700 leading-tight">
+                                    Personal Growth Self-Assessment
+                                </div>
+                            </div>
+                            <div x-show="step === 15">
+                                <div class="text-lg font-bold text-gray-700 leading-tight">
+                                    Personal Growth Self-Assessment
+                                </div>
+                            </div>
+                            <div x-show="step === 16">
+                                <div class="text-lg font-bold text-gray-700 leading-tight">
+                                    Your Profile
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center md:w-64">
+                            <div class="w-full bg-white rounded-full mr-2">
+                                <div class="rounded-full bg-green-500 text-xs leading-none h-2 text-center text-white"
+                                    :style="'width: '+ parseInt(step / 16 * 100) +'%'"></div>
+                            </div>
+                            <div class="text-xs w-10 text-gray-600" x-text="parseInt(step / 16 * 100) +'%'"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 pb-8">
+                    <div x-show.transition.in="step === 1">
+                        <div class="w-full">
+                            <fieldset class="mb-5 ">
+                                <legend class="sr-only">
+                                    Personal Growth Self-Assessment
+                                </legend>
+
+                                <p class="mt-1">
+                                    Personal Growth Self-Assessment
+                                </p>
+
+                                <div class="flex items-center my-4">
+                                    <input id="data_one_1" type="radio" name="data_one"
+                                        value="Rarely" class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_one_1"
+                                        aria-describedby="data_one_1">
+                                    <label for="data_one_1"
+                                        class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Rarely
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_one_2" type="radio" name="data_one"
+                                        value="Occasionally"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_one_2"
+                                        aria-describedby="data_one_2">
+                                    <label for="data_one_2"
+                                        class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Occasionally
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_one_3" type="radio" name="data_one"
+                                        value="Sometimes"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_one_3"
+                                        aria-describedby="data_one_3">
+                                    <label for="data_one_3"
+                                        class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Sometimes
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_one_4" type="radio" name="data_one"
+                                        value="Often" class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_one_4"
+                                        aria-describedby="data_one_4">
+                                    <label for="data_one_4"
+                                        class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Often
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_one_5" type="radio" name="data_one"
+                                        value="Always" class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_one_5"
+                                        aria-describedby="data_one_5">
+                                    <label for="data_one_5"
+                                        class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Always
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div x-show.transition.in="step === 2">
+                        <div class="w-full">
+                            <fieldset class="mb-5 ">
+                                <legend class="sr-only">
+                                    How frequently do you find yourself feeling genuinely content with your life?
+                                </legend>
+
+
+                                <p class="mt-1">
+                                    How frequently do you find yourself feeling genuinely content with your life?
+                                </p>
+                                <div class="flex items-center my-4">
+                                    <input id="data_two_1" type="radio" name="data_two" value="Rarely"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_two_1" aria-describedby="data_two_1"
+                                    >
+                                    <label for="data_two_1" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Rarely
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_two_2" type="radio" name="data_two" value="Occasionally"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_two_2" aria-describedby="data_two_2">
+                                    <label for="data_two_2" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Occasionally
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_two_3" type="radio" name="data_two" value="Sometimes"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_two_3" aria-describedby="data_two_3">
+                                    <label for="data_two_3" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Sometimes
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_two_4" type="radio" name="data_two" value="Often"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_two_4" aria-describedby="data_two_4">
+                                    <label for="data_two_4" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Often
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_two_5" type="radio" name="data_two" value="Always"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_two_5" aria-describedby="data_two_5">
+                                    <label for="data_two_5" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Always
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div x-show.transition.in="step === 3">
+                        <div class="w-full">
+                            <fieldset class="mb-5 ">
+                                <legend class="sr-only">
+                                    How often do you challenge yourself to step out of your comfort zone?
+                                </legend>
+
+
+                                <p class="mt-1">
+                                    How often do you challenge yourself to step out of your comfort zone?
+                                </p>
+                                <div class="flex items-center my-4">
+                                    <input id="data_three_1" type="radio" name="data_three" value="Rarely"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_three_1" aria-describedby="data_three_1"
+                                    >
+                                    <label for="data_three_1" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Rarely
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_three_2" type="radio" name="data_three" value="Occasionally"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_three_2" aria-describedby="data_three_2">
+                                    <label for="data_three_2" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Occasionally
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_three_3" type="radio" name="data_three" value="Sometimes"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_three_3" aria-describedby="data_three_3">
+                                    <label for="data_three_3" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Sometimes
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_three_4" type="radio" name="data_three" value="Often"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_three_4" aria-describedby="data_three_4">
+                                    <label for="data_three_4" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Often
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_three_5" type="radio" name="data_three" value="Always"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_three_5" aria-describedby="data_three_5">
+                                    <label for="data_three_5" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Always
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div x-show.transition.in="step === 4">
+                        <div class="w-full">
+                            <fieldset class="mb-5 ">
+                                <legend class="sr-only">
+                                    How frequently do you acknowledge and celebrate your small wins?
+                                </legend>
+
+
+                                <p class="mt-1">
+                                    How frequently do you acknowledge and celebrate your small wins?
+                                </p>
+                                <div class="flex items-center my-4">
+                                    <input id="data_four_1" type="radio" name="data_four" value="Rarely"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_four_1" aria-describedby="data_four_1"
+                                    >
+                                    <label for="data_four_1" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Rarely
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_four_2" type="radio" name="data_four" value="Occasionally"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_four_2" aria-describedby="data_four_2">
+                                    <label for="data_four_2" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Occasionally
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_four_3" type="radio" name="data_four" value="Sometimes"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_four_3" aria-describedby="data_four_3">
+                                    <label for="data_four_3" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Sometimes
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_four_4" type="radio" name="data_four" value="Often"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_four_4" aria-describedby="data_four_4">
+                                    <label for="data_four_4" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Often
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_four_5" type="radio" name="data_four" value="Always"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_four_5" aria-describedby="data_four_5">
+                                    <label for="data_four_5" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Always
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div x-show.transition.in="step === 5">
+                        <div class="w-full">
+                            <fieldset class="mb-5 ">
+                                <legend class="sr-only">
+                                    How often do you seek feedback to grow and improve?
+                                </legend>
+
+
+                                <p class="mt-1">
+                                    How often do you seek feedback to grow and improve?
+                                </p>
+                                <div class="flex items-center my-4">
+                                    <input id="data_five_1" type="radio" name="data_five" value="Rarely"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_five_1" aria-describedby="data_five_1"
+                                    >
+                                    <label for="data_five_1" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Rarely
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_five_2" type="radio" name="data_five" value="Occasionally"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_five_2" aria-describedby="data_five_2">
+                                    <label for="data_five_2" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Occasionally
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_five_3" type="radio" name="data_five" value="Sometimes"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_five_3" aria-describedby="data_five_3">
+                                    <label for="data_five_3" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Sometimes
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_five_4" type="radio" name="data_five" value="Often"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_five_4" aria-describedby="data_five_4">
+                                    <label for="data_five_4" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Often
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_five_5" type="radio" name="data_five" value="Always"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_five_5" aria-describedby="data_five_5">
+                                    <label for="data_five_5" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Always
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div x-show.transition.in="step === 6">
+                        <div class="w-full">
+                            <fieldset class="mb-5 ">
+                                <legend class="sr-only">
+                                    How frequently do you set clear, achievable goals?
+                                </legend>
+
+
+                                <p class="mt-1">
+                                    How frequently do you set clear, achievable goals?
+                                </p>
+                                <div class="flex items-center my-4">
+                                    <input id="data_six_1" type="radio" name="data_six" value="Rarely"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_six_1" aria-describedby="data_six_1"
+                                    >
+                                    <label for="data_six_1" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Rarely
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_six_2" type="radio" name="data_six" value="Occasionally"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_six_2" aria-describedby="data_six_2">
+                                    <label for="data_six_2" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Occasionally
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_six_3" type="radio" name="data_six" value="Sometimes"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_six_3" aria-describedby="data_six_3">
+                                    <label for="data_six_3" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Sometimes
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_six_4" type="radio" name="data_six" value="Often"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_six_4" aria-describedby="data_six_4">
+                                    <label for="data_six_4" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Often
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_six_5" type="radio" name="data_six" value="Always"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_six_5" aria-describedby="data_six_5">
+                                    <label for="data_six_5" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Always
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div x-show.transition.in="step === 7">
+                        <div class="w-full">
+                            <fieldset class="mb-5 ">
+                                <legend class="sr-only">
+                                    How often do you feel in control of your emotions and reactions?
+                                </legend>
+
+
+                                <p class="mt-1">
+                                    How often do you feel in control of your emotions and reactions?
+                                </p>
+                                <div class="flex items-center my-4">
+                                    <input id="data_seven_1" type="radio" name="data_seven" value="Rarely"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_seven_1" aria-describedby="data_seven_1"
+                                    >
+                                    <label for="data_seven_1" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Rarely
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_seven_2" type="radio" name="data_seven" value="Occasionally"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_seven_2" aria-describedby="data_seven_2">
+                                    <label for="data_seven_2" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Occasionally
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_seven_3" type="radio" name="data_seven" value="Sometimes"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_seven_3" aria-describedby="data_seven_3">
+                                    <label for="data_seven_3" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Sometimes
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_seven_4" type="radio" name="data_seven" value="Often"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_seven_4" aria-describedby="data_seven_4">
+                                    <label for="data_seven_4" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Often
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_seven_5" type="radio" name="data_seven" value="Always"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_seven_5" aria-describedby="data_seven_5">
+                                    <label for="data_seven_5" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Always
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div x-show.transition.in="step === 8">
+                        <div class="w-full">
+                            <fieldset class="mb-5 ">
+                                <legend class="sr-only">
+                                    How frequently do you prioritize self-care and self-love?
+                                </legend>
+
+
+                                <p class="mt-1">
+                                    How frequently do you prioritize self-care and self-love?
+                                </p>
+                                <div class="flex items-center my-4">
+                                    <input id="data_eight_1" type="radio" name="data_eight" value="Rarely"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_eight_1" aria-describedby="data_eight_1"
+                                    >
+                                    <label for="data_eight_1" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Rarely
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_eight_2" type="radio" name="data_eight" value="Occasionally"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_eight_2" aria-describedby="data_eight_2">
+                                    <label for="data_eight_2" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Occasionally
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_eight_3" type="radio" name="data_eight" value="Sometimes"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_eight_3" aria-describedby="data_eight_3">
+                                    <label for="data_eight_3" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Sometimes
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_eight_4" type="radio" name="data_eight" value="Often"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_eight_4" aria-describedby="data_eight_4">
+                                    <label for="data_eight_4" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Often
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_eight_5" type="radio" name="data_eight" value="Always"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_eight_5" aria-describedby="data_eight_5">
+                                    <label for="data_eight_5" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Always
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div x-show.transition.in="step === 9">
+                        <div class="w-full">
+                            <fieldset class="mb-5 ">
+                                <legend class="sr-only">
+                                    How often do you find opportunities to learn in your day-to-day life?
+                                </legend>
+
+
+                                <p class="mt-1">
+                                    How often do you find opportunities to learn in your day-to-day life?
+                                </p>
+                                <div class="flex items-center my-4">
+                                    <input id="data_nine_1" type="radio" name="data_nine" value="Rarely"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_nine_1" aria-describedby="data_nine_1"
+                                    >
+                                    <label for="data_nine_1" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Rarely
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_nine_2" type="radio" name="data_nine" value="Occasionally"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_nine_2" aria-describedby="data_nine_2">
+                                    <label for="data_nine_2" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Occasionally
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_nine_3" type="radio" name="data_nine" value="Sometimes"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_nine_3" aria-describedby="data_nine_3">
+                                    <label for="data_nine_3" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Sometimes
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_nine_4" type="radio" name="data_nine" value="Often"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_nine_4" aria-describedby="data_nine_4">
+                                    <label for="data_nine_4" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Often
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_nine_5" type="radio" name="data_nine" value="Always"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_nine_5" aria-describedby="data_nine_5">
+                                    <label for="data_nine_5" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Always
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div x-show.transition.in="step === 10">
+                        <div class="w-full">
+                            <fieldset class="mb-5 ">
+                                <legend class="sr-only">
+                                    How frequently do you engage in deep, meaningful conversations?
+                                </legend>
+
+
+                                <p class="mt-1">
+                                    How frequently do you engage in deep, meaningful conversations?
+                                </p>
+                                <div class="flex items-center my-4">
+                                    <input id="data_ten_1" type="radio" name="data_ten" value="Rarely"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_ten_1" aria-describedby="data_ten_1"
+                                    >
+                                    <label for="data_ten_1" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Rarely
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_ten_2" type="radio" name="data_ten" value="Occasionally"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_ten_2" aria-describedby="data_ten_2">
+                                    <label for="data_ten_2" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Occasionally
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_ten_3" type="radio" name="data_ten" value="Sometimes"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_ten_3" aria-describedby="data_ten_3">
+                                    <label for="data_ten_3" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Sometimes
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_ten_4" type="radio" name="data_ten" value="Often"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_ten_4" aria-describedby="data_ten_4">
+                                    <label for="data_ten_4" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Often
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_ten_5" type="radio" name="data_ten" value="Always"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_ten_5" aria-describedby="data_ten_5">
+                                    <label for="data_ten_5" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Always
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div x-show.transition.in="step === 11">
+                        <div class="w-full">
+                            <fieldset class="mb-5 ">
+                                <legend class="sr-only">
+                                    How frequently do you resonate with the idea of lifelong learning?
+                                </legend>
+
+
+                                <p class="mt-1">
+                                    How frequently do you resonate with the idea of lifelong learning?
+                                </p>
+                                <div class="flex items-center my-4">
+                                    <input id="data_eleven_1" type="radio" name="data_eleven" value="Rarely"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_eleven_1" aria-describedby="data_eleven_1"
+                                    >
+                                    <label for="data_eleven_1" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Rarely
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_eleven_2" type="radio" name="data_eleven" value="Occasionally"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_eleven_2" aria-describedby="data_eleven_2">
+                                    <label for="data_eleven_2" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Occasionally
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_eleven_3" type="radio" name="data_eleven" value="Sometimes"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_eleven_3" aria-describedby="data_eleven_3">
+                                    <label for="data_eleven_3" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Sometimes
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_eleven_4" type="radio" name="data_eleven" value="Often"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_eleven_4" aria-describedby="data_eleven_4">
+                                    <label for="data_eleven_4" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Often
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_eleven_5" type="radio" name="data_eleven" value="Always"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_eleven_5" aria-describedby="data_eleven_5">
+                                    <label for="data_eleven_5" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Always
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div x-show.transition.in="step === 12">
+                        <div class="w-full">
+                            <fieldset class="mb-5 ">
+                                <legend class="sr-only">
+                                    How often do you act proactively to resolve conflicts in your life?
+                                </legend>
+
+
+                                <p class="mt-1">
+                                    How often do you act proactively to resolve conflicts in your life?
+                                </p>
+                                <div class="flex items-center my-4">
+                                    <input id="data_twelve_1" type="radio" name="data_twelve" value="Rarely"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_twelve_1" aria-describedby="data_twelve_1"
+                                    >
+                                    <label for="data_twelve_1" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Rarely
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_twelve_2" type="radio" name="data_twelve" value="Occasionally"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_twelve_2" aria-describedby="data_twelve_2">
+                                    <label for="data_twelve_2" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Occasionally
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_twelve_3" type="radio" name="data_twelve" value="Sometimes"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_twelve_3" aria-describedby="data_twelve_3">
+                                    <label for="data_twelve_3" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Sometimes
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_twelve_4" type="radio" name="data_twelve" value="Often"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_twelve_4" aria-describedby="data_twelve_4">
+                                    <label for="data_twelve_4" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Often
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_twelve_5" type="radio" name="data_twelve" value="Always"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_twelve_5" aria-describedby="data_twelve_5">
+                                    <label for="data_twelve_5" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Always
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div x-show.transition.in="step === 13">
+                        <div class="w-full">
+                            <fieldset class="mb-5 ">
+                                <legend class="sr-only">
+                                    How frequently do you feel connected with your innermost desires?
+                                </legend>
+
+
+                                <p class="mt-1">
+                                    How frequently do you feel connected with your innermost desires?
+                                </p>
+                                <div class="flex items-center my-4">
+                                    <input id="data_thirteen_1" type="radio" name="data_thirteen" value="Rarely"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_thirteen_1" aria-describedby="data_thirteen_1"
+                                    >
+                                    <label for="data_thirteen_1" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Rarely
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_thirteen_2" type="radio" name="data_thirteen" value="Occasionally"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_thirteen_2" aria-describedby="data_thirteen_2">
+                                    <label for="data_thirteen_2" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Occasionally
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_thirteen_3" type="radio" name="data_thirteen" value="Sometimes"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_thirteen_3" aria-describedby="data_thirteen_3">
+                                    <label for="data_thirteen_3" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Sometimes
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_thirteen_4" type="radio" name="data_thirteen" value="Often"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_thirteen_4" aria-describedby="data_thirteen_4">
+                                    <label for="data_thirteen_4" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Often
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_thirteen_5" type="radio" name="data_thirteen" value="Always"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_thirteen_5" aria-describedby="data_thirteen_5">
+                                    <label for="data_thirteen_5" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Always
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div x-show.transition.in="step === 14">
+                        <div class="w-full">
+                            <fieldset class="mb-5 ">
+                                <legend class="sr-only">
+                                    How often do you practice gratitude and focus on your blessings?
+                                </legend>
+
+
+                                <p class="mt-1">
+                                    How often do you practice gratitude and focus on your blessings?
+                                </p>
+                                <div class="flex items-center my-4">
+                                    <input id="data_fourteen_1" type="radio" name="data_fourteen" value="Rarely"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_fourteen_1" aria-describedby="data_fourteen_1"
+                                    >
+                                    <label for="data_fourteen_1" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Rarely
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_fourteen_2" type="radio" name="data_fourteen" value="Occasionally"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_fourteen_2" aria-describedby="data_fourteen_2">
+                                    <label for="data_fourteen_2" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Occasionally
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_fourteen_3" type="radio" name="data_fourteen" value="Sometimes"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_fourteen_3" aria-describedby="data_fourteen_3">
+                                    <label for="data_fourteen_3" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Sometimes
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_fourteen_4" type="radio" name="data_fourteen" value="Often"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_fourteen_4" aria-describedby="data_fourteen_4">
+                                    <label for="data_fourteen_4" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Often
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_fourteen_5" type="radio" name="data_fourteen" value="Always"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_fourteen_5" aria-describedby="data_fourteen_5">
+                                    <label for="data_fourteen_5" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Always
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div x-show.transition.in="step === 15">
+                        <div class="w-full">
+                            <fieldset class="mb-5 ">
+                                <legend class="sr-only">
+                                    How often do you actively seek opportunities to grow mentally, emotionally, and
+                                    spiritually?
+                                </legend>
+
+
+                                <p class="mt-1">
+                                    How often do you actively seek opportunities to grow mentally, emotionally, and
+                                    spiritually?
+                                </p>
+                                <div class="flex items-center my-4">
+                                    <input id="data_fifteen_1" type="radio" name="data_fifteen" value="Rarely"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_fifteen_1" aria-describedby="data_fifteen_1"
+                                    >
+                                    <label for="data_fifteen_1" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Rarely
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_fifteen_2" type="radio" name="data_fifteen" value="Occasionally"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_fifteen_2" aria-describedby="data_fifteen_2">
+                                    <label for="data_fifteen_2" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Occasionally
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_fifteen_3" type="radio" name="data_fifteen" value="Sometimes"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_fifteen_3" aria-describedby="data_fifteen_3">
+                                    <label for="data_fifteen_3" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Sometimes
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_fifteen_4" type="radio" name="data_fifteen" value="Often"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_fifteen_4" aria-describedby="data_fifteen_4">
+                                    <label for="data_fifteen_4" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Often
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_fifteen_5" type="radio" name="data_fifteen" value="Always"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_fifteen_5" aria-describedby="data_fifteen_5">
+                                    <label for="data_fifteen_5" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Always
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div x-show.transition.in="step === 16">
+                        <legend class="sr-only">
+                            Make sure to enter your correct email address to receive your detailed results, actionable
+                            insights, and powerful tips. All of this is tailored just for you, based on your answers. No
+                            generic advice—only what YOU need to grow.
+                        </legend>
+
+
+                        <p class="mt-1">
+                            Make sure to enter your correct email address to receive your detailed results, actionable
+                            insights, and powerful tips. All of this is tailored just for you, based on your answers. No
+                            generic advice—only what YOU need to grow.
+                        </p>
+
+                        <div class="my-5">
+                            <label for="name" class="font-bold mb-1 text-gray-700 block">Name</label>
+                            <input type="text" id="name"
+                                class="w-full px-4 py-3 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium"
+                                placeholder="Enter your name...">
+                        </div>
+
+                        <div class="mb-5">
+                            <label for="email" class="font-bold mb-1 text-gray-700 block">Email</label>
+                            <input type="email" id="email"
+                                class="w-full px-4 py-3 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium"
+                                placeholder="Enter your email address...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="fixed bottom-0 left-0 right-0 py-5 bg-white shadow-md" x-show="step != 'complete'">
+            <div class="max-w-3xl mx-auto px-4">
+                <div class="flex justify-between">
+                    <div x-text="`${step}`" id="step_number" class="step_number hidden"></div>
+                    <div class="w-1/2">
+                        <button x-show="step > 1" @click="step--"
+                            class="w-32 focus:outline-none py-2 px-5 rounded-lg shadow-sm text-center text-gray-600 bg-white hover:bg-gray-100 font-medium border">Previous</button>
+                    </div>
+
+                    <div class="w-1/2 text-right">
+                        <button x-show="step < 16" @click="
+                        if(step == 1){
+                            if(document.getElementById('data_one_1').checked || document.getElementById('data_one_2').checked || document.getElementById('data_one_3').checked || document.getElementById('data_one_4').checked || document.getElementById('data_one_5').checked){ 
+                                step++;
+                                let data_one = document.querySelector('input[name=\'data_one\']:checked').value;
+                                localStorage.setItem('data_one', data_one);
+                            } else { 
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'Please answer all questions',
+                                    buttonsStyling: true,
+                                    confirmButtonText: 'OK',
+                                    confirmButtonColor: '#3085d6',
+                                })
+                             }
+                        } else if(step == 2){
+                            if(document.getElementById('data_two_1').checked || document.getElementById('data_two_2').checked || document.getElementById('data_two_3').checked || document.getElementById('data_two_4').checked || document.getElementById('data_two_5').checked){
+                                step++;
+                                let data_two = document.querySelector('input[name=\'data_two\']:checked').value;
+                                localStorage.setItem('data_two', data_two);
+                            } else { 
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'Please answer all questions',
+                                    buttonsStyling: true,
+                                    confirmButtonText: 'OK',
+                                    confirmButtonColor: '#3085d6',
+                                })
+                             }
+                        } else if(step == 3){
+                            if(document.getElementById('data_three_1').checked || document.getElementById('data_three_2').checked || document.getElementById('data_three_3').checked || document.getElementById('data_three_4').checked || document.getElementById('data_three_5').checked){
+                                step++;
+                                let data_three = document.querySelector('input[name=\'data_three\']:checked').value;
+                                localStorage.setItem('data_three', data_three);
+                            } else { 
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'Please answer all questions',
+                                    buttonsStyling: true,
+                                    confirmButtonText: 'OK',
+                                    confirmButtonColor: '#3085d6',
+                                })
+                             }
+                        } else if(step == 4){
+                            if(document.getElementById('data_four_1').checked || document.getElementById('data_four_2').checked || document.getElementById('data_four_3').checked || document.getElementById('data_four_4').checked || document.getElementById('data_four_5').checked){
+                                step++;
+                                let data_four = document.querySelector('input[name=\'data_four\']:checked').value;
+                                localStorage.setItem('data_four', data_four);
+                            } else { 
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'Please answer all questions',
+                                    buttonsStyling: true,
+                                    confirmButtonText: 'OK',
+                                    confirmButtonColor: '#3085d6',
+                                })
+                             }
+                        } else if(step == 5){
+                            if(document.getElementById('data_five_1').checked || document.getElementById('data_five_2').checked || document.getElementById('data_five_3').checked || document.getElementById('data_five_4').checked || document.getElementById('data_five_5').checked){
+                                step++;
+                                let data_five = document.querySelector('input[name=\'data_five\']:checked').value;
+                                localStorage.setItem('data_five', data_five);
+                            } else { 
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'Please answer all questions',
+                                    buttonsStyling: true,
+                                    confirmButtonText: 'OK',
+                                    confirmButtonColor: '#3085d6',
+                                })
+                             }
+                        } else if(step == 6){
+                            if(document.getElementById('data_six_1').checked || document.getElementById('data_six_2').checked || document.getElementById('data_six_3').checked || document.getElementById('data_six_4').checked || document.getElementById('data_six_5').checked){
+                                step++;
+                                let data_six = document.querySelector('input[name=\'data_six\']:checked').value;
+                                localStorage.setItem('data_six', data_six);
+                            } else { 
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'Please answer all questions',
+                                    buttonsStyling: true,
+                                    confirmButtonText: 'OK',
+                                    confirmButtonColor: '#3085d6',
+                                })
+                             }
+                        } else if(step == 7){
+                            if(document.getElementById('data_seven_1').checked || document.getElementById('data_seven_2').checked || document.getElementById('data_seven_3').checked || document.getElementById('data_seven_4').checked || document.getElementById('data_seven_5').checked){
+                                step++;
+                                let data_seven = document.querySelector('input[name=\'data_seven\']:checked').value;
+                                localStorage.setItem('data_seven', data_seven);
+                            } else { 
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'Please answer all questions',
+                                    buttonsStyling: true,
+                                    confirmButtonText: 'OK',
+                                    confirmButtonColor: '#3085d6',
+                                })
+                             }
+                        } else if(step == 8){
+                            if(document.getElementById('data_eight_1').checked || document.getElementById('data_eight_2').checked || document.getElementById('data_eight_3').checked || document.getElementById('data_eight_4').checked || document.getElementById('data_eight_5').checked){
+                                step++;
+                                let data_eight = document.querySelector('input[name=\'data_eight\']:checked').value;
+                                localStorage.setItem('data_eight', data_eight);
+                            } else { 
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'Please answer all questions',
+                                    buttonsStyling: true,
+                                    confirmButtonText: 'OK',
+                                    confirmButtonColor: '#3085d6',
+                                })
+                             }
+                        } else if(step == 9){
+                            if(document.getElementById('data_nine_1').checked || document.getElementById('data_nine_2').checked || document.getElementById('data_nine_3').checked || document.getElementById('data_nine_4').checked || document.getElementById('data_nine_5').checked){
+                                step++;
+                                let data_nine = document.querySelector('input[name=\'data_nine\']:checked').value;
+                                localStorage.setItem('data_nine', data_nine);
+                            } else { 
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'Please answer all questions',
+                                    buttonsStyling: true,
+                                    confirmButtonText: 'OK',
+                                    confirmButtonColor: '#3085d6',
+                                })
+                             }
+                        } else if(step == 10){
+                            if(document.getElementById('data_ten_1').checked || document.getElementById('data_ten_2').checked || document.getElementById('data_ten_3').checked || document.getElementById('data_ten_4').checked || document.getElementById('data_ten_5').checked){
+                                step++;
+                                let data_ten = document.querySelector('input[name=\'data_ten\']:checked').value;
+                                localStorage.setItem('data_ten', data_ten);
+                            } else { 
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'Please answer all questions',
+                                    buttonsStyling: true,
+                                    confirmButtonText: 'OK',
+                                    confirmButtonColor: '#3085d6',
+                                })
+                             }
+                        } else if(step == 11){
+                            if(document.getElementById('data_eleven_1').checked || document.getElementById('data_eleven_2').checked || document.getElementById('data_eleven_3').checked || document.getElementById('data_eleven_4').checked || document.getElementById('data_eleven_5').checked){
+                                step++;
+                                let data_eleven = document.querySelector('input[name=\'data_eleven\']:checked').value;
+                                localStorage.setItem('data_eleven', data_eleven);
+                            } else { 
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'Please answer all questions',
+                                    buttonsStyling: true,
+                                    confirmButtonText: 'OK',
+                                    confirmButtonColor: '#3085d6',
+                                })
+                             }
+                        } else if(step == 12){
+                            if(document.getElementById('data_twelve_1').checked || document.getElementById('data_twelve_2').checked || document.getElementById('data_twelve_3').checked || document.getElementById('data_twelve_4').checked || document.getElementById('data_twelve_5').checked){
+                                step++;
+                                let data_twelve = document.querySelector('input[name=\'data_twelve\']:checked').value;
+                                localStorage.setItem('data_twelve', data_twelve);
+                            } else { 
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'Please answer all questions',
+                                    buttonsStyling: true,
+                                    confirmButtonText: 'OK',
+                                    confirmButtonColor: '#3085d6',
+                                })
+                             }
+                        } else if(step == 13){
+                            if(document.getElementById('data_thirteen_1').checked || document.getElementById('data_thirteen_2').checked || document.getElementById('data_thirteen_3').checked || document.getElementById('data_thirteen_4').checked || document.getElementById('data_thirteen_5').checked){ 
+                                step++;
+                                let data_thirteen = document.querySelector('input[name=\'data_thirteen\']:checked').value;
+                                localStorage.setItem('data_thirteen', data_thirteen);
+                            } else { 
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'Please answer all questions',
+                                    buttonsStyling: true,
+                                    confirmButtonText: 'OK',
+                                    confirmButtonColor: '#3085d6',
+                                })
+                             }
+                        } else if(step == 14){
+                            if(document.getElementById('data_fourteen_1').checked || document.getElementById('data_fourteen_2').checked || document.getElementById('data_fourteen_3').checked || document.getElementById('data_fourteen_4').checked || document.getElementById('data_fourteen_5').checked){
+                                step++;
+                                let data_fourteen = document.querySelector('input[name=\'data_fourteen\']:checked').value;
+                                localStorage.setItem('data_fourteen', data_fourteen);
+                            } else { 
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'Please answer all questions',
+                                    buttonsStyling: true,
+                                    confirmButtonText: 'OK',
+                                    confirmButtonColor: '#3085d6',
+                                })
+                             }
+                        } else if(step == 15){
+                            if(document.getElementById('data_fifteen_1').checked || document.getElementById('data_fifteen_2').checked || document.getElementById('data_fifteen_3').checked || document.getElementById('data_fifteen_4').checked || document.getElementById('data_fifteen_5').checked){
+                                step++;
+                                let data_fifteen = document.querySelector('input[name=\'data_fifteen\']:checked').value;
+                                localStorage.setItem('data_fifteen', data_fifteen);
+                            } else { 
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'Please answer all questions',
+                                    buttonsStyling: true,
+                                    confirmButtonText: 'OK',
+                                    confirmButtonColor: '#3085d6',
+                                })
+                             }
+                        }
+                         " class="w-32 focus:outline-none border border-transparent py-2 px-5 rounded-lg shadow-sm text-center text-white bg-blue-500 hover:bg-blue-600 font-medium">Next</button>
+
+                        <button @click=" if(step == 16){
+                            console.log(document.getElementById('name').value)
+                            if(document.getElementById('name').value != '' && document.getElementById('email').value != ''){
+                                step = 'complete';
+                                let name = document.getElementById('name').value;
+                                let email = document.getElementById('email').value;
+                                localStorage.setItem('name', name);
+                                localStorage.setItem('email', email);
+                            } else { 
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'Please answer all questions',
+                                    buttonsStyling: true,
+                                    confirmButtonText: 'OK',
+                                    confirmButtonColor: '#3085d6',
+                                })
+                             }
+                        }" x-show="step === 16"
+                            class="w-32 focus:outline-none border border-transparent py-2 px-5 rounded-lg shadow-sm text-center text-white bg-blue-500 hover:bg-blue-600 font-medium">Complete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
