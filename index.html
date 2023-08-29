@@ -106,6 +106,7 @@
         data_thirteen: localStorage.getItem('data_thirteen') ? localStorage.getItem('data_thirteen') : '',
         data_fourteen: localStorage.getItem('data_fourteen') ? localStorage.getItem('data_fourteen') : '',
         data_fifteen: localStorage.getItem('data_fifteen') ? localStorage.getItem('data_fifteen') : '',
+        data_fifteen: localStorage.getItem('data_fifteen') ? localStorage.getItem('data_fifteen') : '',
         name: localStorage.getItem('name') ? localStorage.getItem('name') : '',
         email: localStorage.getItem('email') ? localStorage.getItem('email') : ''
     }" x-cloak>
@@ -212,6 +213,11 @@
                             </div>
                             <div x-show="step === 15">
                                 <div class="text-lg font-bold text-gray-700 leading-tight">
+                                    Personal Growth Self-Assessment
+                                </div>
+                            </div>
+                            <div x-show="step === 16">
+                                <div class="text-lg font-bold text-gray-700 leading-tight">
                                     Your Profile
                                 </div>
                             </div>
@@ -220,9 +226,9 @@
                         <div class="flex items-center md:w-64">
                             <div class="w-full bg-white rounded-full mr-2">
                                 <div class="rounded-full bg-green-500 text-xs leading-none h-2 text-center text-white"
-                                    :style="'width: '+ parseInt(step / 15 * 100) +'%'"></div>
+                                    :style="'width: '+ parseInt(step / 16 * 100) +'%'"></div>
                             </div>
-                            <div class="text-xs w-10 text-gray-600" x-text="parseInt(step / 15 * 100) +'%'"></div>
+                            <div class="text-xs w-10 text-gray-600" x-text="parseInt(step / 16 * 100) +'%'"></div>
                         </div>
                     </div>
                 </div>
@@ -1191,7 +1197,76 @@
                             </fieldset>
                         </div>
                     </div>
+
                     <div x-show.transition.in="step === 15">
+                        <div class="w-full">
+                            <fieldset class="mb-5 ">
+                                <legend class="sr-only">
+                                    How often do you actively seek opportunities to grow mentally, emotionally, and
+                                    spiritually?
+                                </legend>
+
+
+                                <p class="mt-1">
+                                    How often do you actively seek opportunities to grow mentally, emotionally, and
+                                    spiritually?
+                                </p>
+                                <div class="flex items-center my-4">
+                                    <input id="data_fifteen_1" type="radio" name="data_fifteen" value="Rarely"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_fifteen_1" aria-describedby="data_fifteen_1"
+                                        @click="data_fifteen = 'Rarely'" x-bind:checked="data_fifteen === 'Rarely'">
+                                    <label for="data_fifteen_1" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Rarely
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_fifteen_2" type="radio" name="data_fifteen" value="Occasionally"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_fifteen_2" aria-describedby="data_fifteen_2"
+                                        @click="data_fifteen = 'Occasionally'"
+                                        x-bind:checked="data_fifteen === 'Occasionally'">
+                                    <label for="data_fifteen_2" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Occasionally
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_fifteen_3" type="radio" name="data_fifteen" value="Sometimes"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_fifteen_3" aria-describedby="data_fifteen_3"
+                                        @click="data_fifteen = 'Sometimes'"
+                                        x-bind:checked="data_fifteen === 'Sometimes'">
+                                    <label for="data_fifteen_3" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Sometimes
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_fifteen_4" type="radio" name="data_fifteen" value="Often"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_fifteen_4" aria-describedby="data_fifteen_4"
+                                        @click="data_fifteen = 'Often'" x-bind:checked="data_fifteen === 'Often'">
+                                    <label for="data_fifteen_4" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Often
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <input id="data_fifteen_5" type="radio" name="data_fifteen" value="Always"
+                                        class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                        aria-labelledby="data_fifteen_5" aria-describedby="data_fifteen_5"
+                                        @click="data_fifteen = 'Always'" x-bind:checked="data_fifteen === 'Always'">
+                                    <label for="data_fifteen_5" class="text-sm font-medium text-gray-900 ml-2 block">
+                                        Always
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <div x-show.transition.in="step === 16">
                         <legend class="sr-only">
                             Make sure to enter your correct email address to receive your detailed results, actionable
                             insights, and powerful tips. All of this is tailored just for you, based on your answers. No
@@ -1235,7 +1310,7 @@
                     </div>
 
                     <div class="w-1/2 text-right">
-                        <button x-show="step < 15" @click="
+                        <button x-show="step < 16" @click="
                         if(step == 1){
                             if(data_one !== ''){ 
                                 step++;
@@ -1446,10 +1521,25 @@
                                     confirmButtonColor: '#3085d6',
                                 })
                              }
+                        }  else if(step == 15){
+                            if(data_fifteen !== ''){
+                                step++;
+                                localStorage.setItem('step', 16);
+                                localStorage.setItem('data_fifteen', data_fifteen);
+                            } else { 
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'Please answer all questions',
+                                    buttonsStyling: true,
+                                    confirmButtonText: 'OK',
+                                    confirmButtonColor: '#3085d6',
+                                })
+                             }
                         }"
                             class="w-32 focus:outline-none border border-transparent py-2 px-5 rounded-lg shadow-sm text-center text-white bg-blue-500 hover:bg-blue-600 font-medium">Next</button>
 
-                        <button @click=" if(step == 15){
+                        <button @click=" if(step == 16){
                             // validate email
                             let emailValidate = email.includes('@') && email.includes('.');
                             if(name !== '' && email !== ''){
@@ -1458,28 +1548,10 @@
                                     localStorage.setItem('name', name);
                                     localStorage.setItem('email', email);
 
-                                    if (name == '' || email == '' || data_one == '' || data_two == '' || data_three == '' || data_four == '' || data_five == '' || data_six == '' || data_seven == '' || data_eight == '' || data_nine == '' || data_ten == '' || data_eleven == '' || data_twelve == '' || data_thirteen == '' || data_fourteen == '') {
+                                    if (name === '' || email === '' || data_one === '' || data_two === '' || data_three === '' || data_four === '' || data_five === '' || data_six === '' || data_seven === '' || data_eight === '' || data_nine === '' || data_ten === '' || data_eleven === '' || data_twelve === '' || data_thirteen === '' || data_fourteen === '') {
                                         swal('Please complete the form', '', 'error');
                                     } else {
-                                        link =
-                                            'https://docs.google.com/forms/d/e/1FAIpQLSf6i-OpK_QFF24MAP-MPobC2_yEieCs9X3kZ2aQVmKfQ-3oDg/formResponse?usp=pp_url' +
-                                            '&entry.1142152857=' + data_one +
-                                            '&entry.1297098253=' + data_two +
-                                            '&entry.745652231=' + data_three +
-                                            '&entry.1756097018=' + data_four +
-                                            '&entry.1291316593=' + data_five +
-                                            '&entry.1203482116=' + data_six +
-                                            '&entry.626045774=' + data_seven +
-                                            '&entry.49290675=' + data_eight +
-                                            '&entry.2097706187=' + data_nine +
-                                            '&entry.936095193=' + data_ten +
-                                            '&entry.1059935008=' + data_eleven +
-                                            '&entry.1602882055=' + data_twelve +
-                                            '&entry.1248590208=' + data_thirteen +
-                                            '&entry.797431002=' + data_fourteen +
-                                            '&entry.1449005772=' + name +
-                                            '&entry.1685270148=' + email +
-                                            '&submit=Submit';
+                                        let link = 'https:\/\/docs.google.com/forms/d/e/1FAIpQLSf6i-OpK_QFF24MAP-MPobC2_yEieCs9X3kZ2aQVmKfQ-3oDg/formResponse?usp=pp_url' + '&entry.1142152857=' + email + '&entry.1297098253=' + data_two + '&entry.1325162669=' + data_three + '&entry.745652231=' + data_four + '&entry.1756097018=' + data_five + '&entry.1291316593=' + data_six + '&entry.1203482116=' + data_seven + '&entry.626045774=' + data_eight + '&entry.49290675=' + data_nine + '&entry.2097706187=' + data_ten + '&entry.936095193=' + data_eleven + '&entry.1059935008=' + data_twelve + '&entry.1602882055=' + data_thirteen + '&entry.1248590208=' + data_fourteen + '&entry.797431002=' + data_fifteen + '&entry.1449005772=' + name + '&entry.1685270148=' + email + '&submit=Submit';
                                         $.ajax({
                                             url: link,
                                             type: 'GET',
@@ -1525,7 +1597,7 @@
                                     confirmButtonColor: '#3085d6',
                                 })
                              }
-                        }" x-show="step === 15"
+                        }" x-show="step === 16"
                             class="w-32 focus:outline-none border border-transparent py-2 px-5 rounded-lg shadow-sm text-center text-white bg-blue-500 hover:bg-blue-600 font-medium">Complete</button>
                     </div>
                 </div>
