@@ -109,8 +109,8 @@
         data_fifteen: localStorage.getItem('data_fifteen') ? localStorage.getItem('data_fifteen') : '',
         name: localStorage.getItem('name') ? localStorage.getItem('name') : '',
         email: localStorage.getItem('email') ? localStorage.getItem('email') : ''
-    }" x-cloak>
-        <div class="max-w-3xl mx-auto px-4 py-10">
+    }" x-cloak class="flex flex-col justify-between items-center h-full max-w-3xl mx-auto">
+        <div class="w-full px-4 py-10">
 
             <div x-show.transition="step === 'complete'">
                 <div class="bg-white rounded-lg p-10 flex items-center shadow justify-between">
@@ -1300,8 +1300,8 @@
             </div>
         </div>
 
-        <div class="fixed bottom-0 left-0 right-0 py-5 bg-white shadow-md" x-show="step != 'complete'">
-            <div class="max-w-3xl mx-auto px-4">
+        <div class="w-full mx-auto py-5 bg-white shadow-md rounded-t-2xl" x-show="step != 'complete'">
+            <div class="w-full mx-auto px-4">
                 <div class="flex justify-between">
                     <div x-text="`${step}`" id="step_number" class="step_number hidden"></div>
                     <div class="w-1/2">
@@ -1551,24 +1551,24 @@
                                     if (name === '' || email === '' || data_one === '' || data_two === '' || data_three === '' || data_four === '' || data_five === '' || data_six === '' || data_seven === '' || data_eight === '' || data_nine === '' || data_ten === '' || data_eleven === '' || data_twelve === '' || data_thirteen === '' || data_fourteen === '') {
                                         swal('Please complete the form', '', 'error');
                                     } else {
-                                        let link = 'https:\/\/docs.google.com/forms/d/e/1FAIpQLSedGkfoBU_3q5q4pkZXLq4_q-Cucqjt-zor4yMgfGKAFsJh-A/formResponse?usp=pp_url' + 
-                                        '&entry.1270961278=' + data_one + 
-                                        '&entry.1792517787=' + data_two + 
-                                        '&entry.1417269210=' + data_three + 
-                                        '&entry.374782766=' + data_four + 
-                                        '&entry.888136725=' + data_five + 
-                                        '&entry.1933643341=' + data_six + 
-                                        '&entry.835212317=' + data_seven + 
-                                        '&entry.2082345=' + data_eight + 
-                                        '&entry.1874398260=' + data_nine + 
-                                        '&entry.2145177338=' + data_ten + 
-                                        '&entry.1094246411=' + data_eleven + 
-                                        '&entry.600010926=' + data_twelve + 
-                                        '&entry.1012423439=' + data_thirteen + 
-                                        '&entry.1662416570=' + data_fourteen + 
-                                        '&entry.219274569=' + data_fifteen + 
-                                        '&entry.1779994598=' + name + 
-                                        '&entry.1357827156=' + email +
+                                        let link = 'https:\/\/docs.google.com/forms/d/e/1FAIpQLSdDC3G4eEDqmzEoHcD-gAmjN4_nyHIKM67FbIDq0wrFpU7aVg/formResponse?usp=pp_url' + 
+                                        '&entry.1043088940=' + data_one + 
+                                        '&entry.333595463=' + data_two + 
+                                        '&entry.1126449187=' + data_three + 
+                                        '&entry.338908945=' + data_four + 
+                                        '&entry.763620955=' + data_five + 
+                                        '&entry.1525119056=' + data_six + 
+                                        '&entry.1980099782=' + data_seven + 
+                                        '&entry.622135603=' + data_eight + 
+                                        '&entry.525321545=' + data_nine + 
+                                        '&entry.1200236466=' + data_ten + 
+                                        '&entry.1080834943=' + data_eleven + 
+                                        '&entry.194550646=' + data_twelve + 
+                                        '&entry.1211887051=' + data_thirteen + 
+                                        '&entry.1080727=' + data_fourteen + 
+                                        '&entry.631038501=' + data_fifteen + 
+                                        '&entry.615196354=' + name + 
+                                        '&entry.1420785332=' + email +
                                         '&submit=Submit';
                                         $.ajax({
                                             url: link,
